@@ -1,0 +1,8 @@
+{
+  "name": "Mechdyane - Personalized Learning Evolution",
+  "description": "An engaging, gamified learning platform for beginners in tech, marketing, healthcare, and more, powered by Gemini AI for personalized progression.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
