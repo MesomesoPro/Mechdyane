@@ -42,16 +42,19 @@ const Dashboard: React.FC<DashboardProps> = ({ progress, onExplore }) => {
                 <span className="text-xs font-semibold text-gray-400">{completedCount} of {totalCount} lessons finished</span>
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{progress.currentCourseTitle}</h2>
-              <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden mt-4">
+              <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden mt-4 relative">
+                {/* Progress Bar with Shimmer Effect */}
                 <div 
-                  className="bg-gradient-to-r from-indigo-500 to-indigo-700 h-full rounded-full transition-all duration-1000 ease-out"
+                  className="bg-gradient-to-r from-indigo-500 to-indigo-700 h-full rounded-full transition-all duration-1000 ease-out relative"
                   style={{ width: `${progressPercent}%` }}
-                ></div>
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-1/2 animate-[shimmer_2s_infinite] -skew-x-12"></div>
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right hidden sm:block">
-                <p className="text-2xl font-black text-indigo-600">{progressPercent}%</p>
+                <p className="text-2xl font-black text-indigo-600 transition-all duration-300">{progressPercent}%</p>
                 <p className="text-xs font-bold text-gray-400 uppercase">Progress</p>
               </div>
               <button 
@@ -111,7 +114,7 @@ const Dashboard: React.FC<DashboardProps> = ({ progress, onExplore }) => {
           <div className="text-3xl font-bold text-gray-900">Lv. {progress.level}</div>
           <div className="mt-2 w-full bg-gray-100 rounded-full h-2 overflow-hidden">
             <div 
-              className="bg-indigo-600 h-full rounded-full" 
+              className="bg-indigo-600 h-full rounded-full transition-all duration-1000 ease-out" 
               style={{ width: `${(progress.points % 1000) / 10}%` }}
             ></div>
           </div>
@@ -124,7 +127,7 @@ const Dashboard: React.FC<DashboardProps> = ({ progress, onExplore }) => {
             </div>
             <span className="text-sm font-medium text-gray-400">Total XP</span>
           </div>
-          <div className="text-3xl font-bold text-gray-900">{progress.points.toLocaleString()}</div>
+          <div className="text-3xl font-bold text-gray-900 transition-all duration-300">{progress.points.toLocaleString()}</div>
           <div className="text-xs text-emerald-500 mt-1 font-medium">+120 today</div>
         </div>
 

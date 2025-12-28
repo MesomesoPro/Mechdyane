@@ -5,7 +5,9 @@ import { INITIAL_BADGES, AVAILABLE_DOMAINS, MOCK_RECOMMENDATIONS } from './const
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import LearningView from './components/LearningView';
-// Fix: Added Flame to the imported icons from lucide-react
+import MyLearning from './components/MyLearning';
+import Achievements from './components/Achievements';
+import Profile from './components/Profile';
 import { Sparkles, BrainCircuit, Bell, Search, Trophy, Flame } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -138,6 +140,25 @@ const App: React.FC = () => {
              </div>
           </div>
         );
+      case 'my-learning':
+        return (
+          <MyLearning 
+            progress={userProgress} 
+            onContinue={startLesson} 
+          />
+        );
+      case 'achievements':
+        return (
+          <Achievements 
+            progress={userProgress} 
+          />
+        );
+      case 'profile':
+        return (
+          <Profile 
+            progress={userProgress} 
+          />
+        );
       default:
         return (
           <div className="flex flex-col items-center justify-center h-96 text-gray-400">
@@ -152,7 +173,7 @@ const App: React.FC = () => {
     <div className="min-h-screen">
       {/* Top Navbar */}
       <nav className="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 z-50 flex items-center justify-between px-8">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('dashboard')}>
           <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-200">
             M
           </div>
@@ -180,7 +201,10 @@ const App: React.FC = () => {
             <Bell size={24} />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
           </button>
-          <div className="w-10 h-10 rounded-2xl bg-indigo-100 border border-indigo-200 overflow-hidden cursor-pointer">
+          <div 
+            className="w-10 h-10 rounded-2xl bg-indigo-100 border border-indigo-200 overflow-hidden cursor-pointer hover:ring-2 ring-indigo-200 transition-all"
+            onClick={() => setActiveTab('profile')}
+          >
             <img src={`https://picsum.photos/seed/${userProgress.level}/100/100`} alt="Avatar" />
           </div>
         </div>
